@@ -29,13 +29,24 @@ Resources:
         AliasTarget:
           HostedZoneId: Z2FDTNDATAQYW2 #Cloudfront distribution general one
           DNSName: !GetAtt MyDistribution.DomainName #or distribution domain name from Cloudfront
+
+  MyCertificate: 
+    Type: AWS::CertificateManager::Certificate
+    Properties: 
+      DomainName: website.cloudtherapy.link
+      ValidationMethod: DNS
   
   MyDistribution:
     Type: AWS::CloudFront::Distribution
     Properties: 
-      DistributionConfig: 
+      DistributionConfig:
+        ViewerCertificate:
+          AcmCertificateArn: arn:aws:acm:us-east-1:379590863734:certificate/483c2d25-ecc5-4851-91c5-7844432ce423
+          SslSupportMethod: sni-only
+        Aliases: 
+          - website.cloudtherapy.link
         DefaultCacheBehavior:
-          ViewerProtocolPolicy: allow-all
+          ViewerProtocolPolicy: redirect-to-https
           TargetOriginId: my-cloudresume-challenge.s3-website-us-west-2.amazonaws.com
           DefaultTTL: 0
           MinTTL: 0
