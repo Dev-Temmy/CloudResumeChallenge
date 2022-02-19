@@ -73,10 +73,15 @@ body{
     font-size: 1.1rem;
     color: darkgoldenrod
 }
+.skills-section ul{
+    list-style-type: square;
+}
 .skills-section ul li {
     display: flex;
     justify-content: space-between;
     align-items: left;
+    padding-top: 1rem;
+    font-size: 0.9rem;
 }
 .PrintContainer{
     display: flex;
