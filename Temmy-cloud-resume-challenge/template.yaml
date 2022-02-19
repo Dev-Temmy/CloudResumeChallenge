@@ -102,6 +102,9 @@ Resources:
   GetCountFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
+      Policies: 
+        - DynamoDBCrudPolicy:
+            TableName: temmy-cloud-resume-challenge
       CodeUri: get-function/
       Handler: app.lambdaHandler
       Runtime: nodejs14.x
@@ -117,6 +120,9 @@ Resources:
   PutCountFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
+      Policies: 
+        - DynamoDBCrudPolicy:
+            TableName: temmy-cloud-resume-challenge
       CodeUri: put-function/
       Handler: app.lambdaHandler
       Runtime: nodejs14.x

@@ -17,7 +17,9 @@ let response;
 
 //import the aws sdk to use dynamodb
 const AWS = require("aws-sdk");
-AWS.config.update({region: "us-west-2"});
+AWS.config.update({region: "us-west-2", 
+endpoint: "http://localhost:8000", 
+accesskeyId: "AKIAVQYLA5N3JNSXCE2N", secretAccessKey:"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"});
 
 
 // create a new DynamoDB client
@@ -26,12 +28,17 @@ AWS.config.update({region: "us-west-2"});
 const docClient = new AWS.DynamoDB.DocumentClient();
 
 const params = {
-TableName : 'temmy-cloud-resume-challenge',
+TableName : temmy-cloud-resume-challenge,
 /* Item properties will depend on your application concerns */
-Key: { ID: 'visitor' }
+Key: { "ID": 'visitor' }, 
+UpdateExpression='ADD ' + 'visitors' + ' :incr',
+ExpressionAttributeValues={        
+            ':incr': 1    
+    },   
+        ReturnValues="UPDATED_NEW"
 };
 
-async function putCount(){
+/*async function putCount(){
     try {
     await docClient.put(params).promise()
     UpdateExpression='ADD ' + 'visitors' + ' :incr',
@@ -44,6 +51,7 @@ async function putCount(){
     }
 }
 
+*/
 
 exports.lambdaHandler = async (event, context) => {
     try {

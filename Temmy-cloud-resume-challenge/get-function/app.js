@@ -17,7 +17,10 @@ let response;
 
 //import the aws sdk to use dynamodb
 const AWS = require("aws-sdk");
-AWS.config.update({region: "us-west-2"});
+AWS.config.update({region: "us-west-2",
+endpoint: "http://localhost:8000",
+accesskeyId: "AKIAVQYLA5N3JNSXCE2N", secretAccessKey:"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"
+});
 
 
 // create a new DynamoDB client
