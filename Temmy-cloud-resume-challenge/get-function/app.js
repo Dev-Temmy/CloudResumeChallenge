@@ -19,8 +19,14 @@ exports.lambdaHandler = async (event, context) => {
         // const ret = await axios(url);
         response = {
             'statusCode': 200,
+            'headers': {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Credentials': '*',
+            'Content-Type': 'application/json'
+        },
             'body': JSON.stringify({
-                message: 'hello world',
+                Visitor: 'hello world',
                 // location: ret.data.trim()
             })
         }
@@ -31,3 +37,19 @@ exports.lambdaHandler = async (event, context) => {
 
     return response
 };
+
+
+/*
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next()
+});
+
+app.get('/', function(req, res, next) {
+    // Handle the get for this route
+});
+
+app.post('/', function(req, res, next) {
+    // Handle the post for this route
+}) */

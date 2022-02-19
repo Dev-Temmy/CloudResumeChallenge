@@ -65,13 +65,14 @@
             <p id ="body"></p>
             
         <script type = "text/javascript">
-            var apiUrl = "https://8zqfnxf6tf.execute-api.eu-north-1.amazonaws.com/Prod/put"; //1st lambda function
+            var apiUrl = "https://0y5i9h8gu3.execute-api.us-west-2.amazonaws.com/Prod/put"; //1st lambda function
                 fetch(apiUrl)
-                .then(() => fetch("https://8zqfnxf6tf.execute-api.eu-north-1.amazonaws.com/Prod/get")) //2nd lambda function
+                .then(() => fetch("https://0y5i9h8gu3.execute-api.us-west-2.amazonaws.com/Prod/get")) //2nd lambda function
                 .then(response => response.json())
                 .then(data =>{
-                    document.getElementById('body').innerHTML = data
-            console.log(data)});
+                    document.getElementById('body').innerHTML = data.count
+            console.log(data.count)});
+            
             </script>
         </div>
     <span>Created By <a href="https://www.linkedin.com/in/odewole-temitope-b1494882/" style="color: white;">Temitope Odewole</a> | <span class="far fa-copyright"></span> 2022 </span>
