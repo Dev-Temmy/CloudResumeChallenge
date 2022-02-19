@@ -14,6 +14,37 @@ let response;
  * @returns {Object} object - API Gateway Lambda Proxy Output Format
  * 
  */
+
+//import the aws sdk to use dynamodb
+const AWS = require("aws-sdk");
+AWS.config.update({region: "us-west-2"});
+
+
+// create a new DynamoDB client
+// which provides connectivity b/w the app
+// and the db instance
+const docClient = new AWS.DynamoDB.DocumentClient();
+
+const params = {
+TableName : 'temmy-cloud-resume-challenge',
+/* Item properties will depend on your application concerns */
+Key: { ID: 'visitor' }
+};
+
+async function putCount(){
+    try {
+    await docClient.put(params).promise()
+    UpdateExpression='ADD ' + 'visitors' + ' :incr',
+        ExpressionAttributeValues={        
+            ':incr': 1    
+        },   
+        ReturnValues="UPDATED_NEW"
+    } catch (err) {
+    return err;
+    }
+}
+
+
 exports.lambdaHandler = async (event, context) => {
     try {
         // const ret = await axios(url);
@@ -26,7 +57,7 @@ exports.lambdaHandler = async (event, context) => {
             'Content-Type': 'application/json'
         },
             'body': JSON.stringify({
-                Visitor: 'hello world',
+                putCount()
                 // location: ret.data.trim()
             })
         }
