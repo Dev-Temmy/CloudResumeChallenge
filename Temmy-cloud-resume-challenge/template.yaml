@@ -19,6 +19,18 @@ Resources:
         IndexDocument: resume.html
       BucketName: my-cloudresume-challenge
 
+  MyDynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: temmy-cloud-resume-challenge
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+      - AttributeName: "ID"
+        AttributeType: "S"
+      KeySchema: 
+      - AttributeName: "ID"
+        KeyType: "HASH"
+
   MyRoute53Record:
     Type: 'AWS::Route53::RecordSetGroup'
     Properties:

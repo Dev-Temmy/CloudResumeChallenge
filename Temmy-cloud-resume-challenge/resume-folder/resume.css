@@ -78,3 +78,28 @@ body{
     justify-content: space-between;
     align-items: left;
 }
+.PrintContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    box-sizing: content-box;
+}
+.btn{
+    font-size: 1.8rem;
+    padding: 10px 20px;
+    margin: 50px 0  50px 140px;
+    background-color: white;
+}
+.btn:hover{
+    background-color: darkgoldenrod;
+}
+
+@media print{
+    body*{
+        visibility: hidden;
+    }
+    main-content*{
+        visibility: visible;
+    }
+}
