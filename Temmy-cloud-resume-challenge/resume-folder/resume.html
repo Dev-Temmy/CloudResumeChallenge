@@ -70,8 +70,8 @@
                 .then(() => fetch("https://0y5i9h8gu3.execute-api.us-west-2.amazonaws.com/Prod/get")) //2nd lambda function
                 .then(response => response.json())
                 .then(data =>{
-                    document.getElementById('body').innerHTML = data.count
-            console.log(data.count)});
+                    document.getElementById('body').innerHTML = data
+            console.log(data)});
             
             </script>
         </div>
