@@ -56,5 +56,5 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-      - run: cd tests/end-to-end-test && npm install && node index.js
+      - run: cd Test/end-to-end-test && npm install && node index.js
         
