@@ -1,4 +1,4 @@
-import boto3
+import boto3  # Python SDK for AWS.
 import json
 
 #from boto3.dynamodb.conditions import Key
@@ -18,7 +18,7 @@ def lambdaHandler(event, context):
         },    
         ReturnValues="UPDATED_NEW"
     )
-
+#include the cors for security and accessibilty
     return {
         'statusCode': 200,
         'headers': {
