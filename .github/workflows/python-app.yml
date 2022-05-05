@@ -39,7 +39,7 @@ jobs:
           aws-access-key-id: ${{ secrets.ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
           aws-region: us-west-2
-      - run: aws s3 sync ./resume-folder s3://my-cloudresume-challenge
+      - run: aws s3 sync ./website s3://my-cloudresume-challenge
   
   integration-test-backend:
     needs: build-and-deploy-infra
@@ -61,3 +61,29 @@ jobs:
       - name: test put-function
       - run: cd Temmy-cloud-resume-challenge/put-function && python test -v ./ && cd ../ ../
         
+  build-and-deploy:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+      - run: sam build
+        working-directory: Temmy-cloud-resume-challenge
+      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
+        working-directory: Temmy-cloud-resume-challenge
+
+  deploy-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with: 
+          args: --delete
+        env:
+          AWS_S3_BUCKET: my-cloudresume-challenge
+          AWS-ACCESS-KEY-ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS-SECRET-ACCESS-KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SOURCE_DIR: Temmy-cloud-resume-challenge/website
