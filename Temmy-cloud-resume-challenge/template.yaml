@@ -16,7 +16,7 @@ Resources:
     Properties:
       AccessControl: PublicRead
       WebsiteConfiguration:
-        IndexDocument: resume.html
+        IndexDocument: index.html
       BucketName: my-cloudresume-challenge
 
   MyDynamoDBTable:
@@ -81,7 +81,7 @@ Resources:
                 - SSLv3
         Enabled: true
         HttpVersion: 'http2'
-        DefaultRootObject: resume.html
+        DefaultRootObject: index.html
 
   BucketPolicy:   
     Type: AWS::S3::BucketPolicy
